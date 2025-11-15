@@ -10,11 +10,11 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - fullstack-chatapp
+      - fullstack
 
   backend:
     image: rohitrawat891997/backend:v1
-    container_name: full-stack_backend
+    container_name: backend
     environment:
       - NODE_ENV=production
       - MONGODB_URI=mongodb://mongoadmin:secret@mongodb:27017/dbname?authSource=admin
@@ -23,20 +23,20 @@ services:
     depends_on:
       - mongodb
     networks:
-      - fullstack-chatapp
+      - fullstack
 
   frontend:
     image: rohitrawat891997/frontend:v1
-    container_name: full-stack_frontend
+    container_name: frontend
     ports:
       - "80:80"
     depends_on:
       - backend
     networks:
-      - fullstack-chatapp
+      - fullstack
 
 networks:
-  fullstack-chatapp:
+  fullstack:
     driver: bridge
 
 volumes:
